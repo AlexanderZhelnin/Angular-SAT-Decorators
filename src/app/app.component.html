@@ -1,0 +1,13 @@
+<ng-container [ngSwitch]="selected">
+  <app-subscribe-guard *ngSwitchCase="SelectedEnum.subscribeGuard"> </app-subscribe-guard>
+  <app-without-autosubcribe *ngSwitchCase="SelectedEnum.withoutAutoSubscribe"></app-without-autosubcribe>
+  <app-with-autosubcribe *ngSwitchCase="SelectedEnum.withAutoSubscribe"></app-with-autosubcribe>
+
+</ng-container>
+
+
+<button (click)="selected=SelectedEnum.subscribeGuard">защита подписки</button>
+<button (click)="selected=SelectedEnum.withoutAutoSubscribe">компонент без авто подписки/отписки</button>
+<button (click)="selected=SelectedEnum.withAutoSubscribe">компонент с авто подпиской/отпиской</button>
+
+<button (click)="selected=SelectedEnum.empty">отчистка</button>
