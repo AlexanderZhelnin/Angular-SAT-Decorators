@@ -1,13 +1,13 @@
 {
-  "name": "angular-sat-directives",
+  "name": "angular-sat-decorators",
   "version": "0.0.0",
   "scripts": {
     "start": "npm-run-all clear --parallel start:**",
-    "start:sat-directives": "ng build sat-directives --watch",
-    "start:app": "node ./scripts/waite-for-sat-directives.js && ng serve",
+    "start:sat-decorators": "ng build sat-decorators --watch",
+    "start:app": "node ./scripts/waite-for-sat-decorators.js && ng serve",
     "clear": "node ./scripts/clear.js",
-    "version": "cd ./projects/sat-directives && npm version patch && cd ../../",
-    "publish": "npm run version && ng build sat-directives && cd dist/sat-directives && npm pack && npm publish",
+    "version": "cd ./projects/sat-decorators && npm version patch && cd ../../",
+    "publish": "npm run version && ng build sat-decorators && cd dist/sat-decorators && npm pack && npm publish",
     "test": "ng test"
   },
   "private": true,

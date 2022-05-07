@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { SubsService } from './subs/subs.service';
-// import { cachedRequest } from 'sat-directives';
+// import { cachedRequest } from 'sat-decorators';
 // import { take } from 'rxjs';
 
 enum SelectedEnum

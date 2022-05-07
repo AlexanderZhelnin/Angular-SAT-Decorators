@@ -1,0 +1,26 @@
+{
+  "name": "sat-decorators",
+  "version": "1.0.4",
+  "license": "MIT",
+  "description": "Библиотека полезных директив",
+  "homepage": "https://www.youtube.com/channel/UCGntVzOD7faGCYbrUfd8PQg",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/AlexanderZhelnin/Angular-SAT-Directives"
+  },
+  "author": {
+    "name": "Александр Желнин",
+    "url": "https://www.youtube.com/channel/UCGntVzOD7faGCYbrUfd8PQg"
+  },
+  "keywords": [
+    "angular",
+    "decorators"
+  ],
+  "peerDependencies": {
+    "@angular/common": "^13.1.0",
+    "@angular/core": "^13.1.0"
+  },
+  "dependencies": {
+    "tslib": "^2.3.0"
+  }
+}

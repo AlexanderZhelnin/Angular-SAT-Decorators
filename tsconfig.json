@@ -17,9 +17,9 @@
     "moduleResolution": "node",
     "importHelpers": true,
     "paths": {
-      "sat-directives": [
-        "dist/sat-directives/sat-directives",
-        "dist/sat-directives"
+      "sat-decorators": [
+        "dist/sat-decorators/sat-decorators",
+        "dist/sat-decorators"
       ]
     },
     "target": "es2017",

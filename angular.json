@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "angular-sat-directives": {
+    "angular-sat-decorators": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -20,7 +20,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/angular-sat-directives",
+            "outputPath": "dist/angular-sat-decorators",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -73,10 +73,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "angular-sat-directives:build:production"
+              "browserTarget": "angular-sat-decorators:build:production"
             },
             "development": {
-              "browserTarget": "angular-sat-directives:build:development"
+              "browserTarget": "angular-sat-decorators:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -84,7 +84,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "angular-sat-directives:build"
+            "browserTarget": "angular-sat-decorators:build"
           }
         },
         "test": {
@@ -108,23 +108,23 @@
         }
       }
     },
-    "sat-directives": {
+    "sat-decorators": {
       "projectType": "library",
-      "root": "projects/sat-directives",
-      "sourceRoot": "projects/sat-directives/src",
+      "root": "projects/sat-decorators",
+      "sourceRoot": "projects/sat-decorators/src",
       "prefix": "lib",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:ng-packagr",
           "options": {
-            "project": "projects/sat-directives/ng-package.json"
+            "project": "projects/sat-decorators/ng-package.json"
           },
           "configurations": {
             "production": {
-              "tsConfig": "projects/sat-directives/tsconfig.lib.prod.json"
+              "tsConfig": "projects/sat-decorators/tsconfig.lib.prod.json"
             },
             "development": {
-              "tsConfig": "projects/sat-directives/tsconfig.lib.json"
+              "tsConfig": "projects/sat-decorators/tsconfig.lib.json"
             }
           },
           "defaultConfiguration": "production"
@@ -132,13 +132,13 @@
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "main": "projects/sat-directives/src/test.ts",
-            "tsConfig": "projects/sat-directives/tsconfig.spec.json",
-            "karmaConfig": "projects/sat-directives/karma.conf.js"
+            "main": "projects/sat-decorators/src/test.ts",
+            "tsConfig": "projects/sat-decorators/tsconfig.spec.json",
+            "karmaConfig": "projects/sat-decorators/karma.conf.js"
           }
         }
       }
     }
   },
-  "defaultProject": "angular-sat-directives"
+  "defaultProject": "angular-sat-decorators"
 }
