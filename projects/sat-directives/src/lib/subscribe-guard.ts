@@ -36,8 +36,59 @@ const SubscriptionMap = new Map<Function, Map<string, Subscription>>();
 
 /**
  * Декоратор автоматической подписки и отписки
+ *
+ * ## Пример:
+ * ```ts
+ * import { AutoSubscribe } from 'sat-directives';
+ * export class WithAutoSubscribeComponent
+ * {
+ *   str1?: string;
+ *   constructor(private readonly s_subs: SubsService)
+ * { }
+ *   @AutoSubscribe() work()
+ *   {
+ *     return this.s_subs.observer1$.pipe(
+ *       tap(str =>
+ *       {
+ *         console.log(str);
+ *         this.str1 = str;
+ *       })
+ *     );
+ *   }
+ * }
+ * ```
  */
 export function AutoSubscribe(): MethodDecorator;
+/**
+ * Декоратор автоматической подписки и отписки
+ * ## Пример:
+ * ```ts
+ * import { AutoSubscribe } from 'sat-directives';
+ * export class WithAutoSubscribeComponent
+ * {
+ *   str1?: string;
+ *   constructor(private readonly s_subs: SubsService)
+ * { }
+ *
+ *   ngOnInit()
+ *   {
+ *     work();
+ *   }
+ *
+ *   @AutoSubscribe({ isAutoSubscribeOnInit: false }) work()
+ *   {
+ *     return this.s_subs.observer1$.pipe(
+ *       tap(str =>
+ *       {
+ *         console.log(str);
+ *         this.str1 = str;
+ *       })
+ *     );
+ *   }
+ * }
+ * ```
+ */
+export function AutoSubscribe(options: IAutoSubscribeOption): MethodDecorator;
 export function AutoSubscribe(options: IAutoSubscribeOption = { isAutoSubscribeOnInit: true }): MethodDecorator
 {
   return (target: any, name: string | symbol, descriptor: PropertyDescriptor) =>

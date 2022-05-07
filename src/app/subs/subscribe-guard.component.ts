@@ -1,18 +1,9 @@
-import { Observable } from 'rxjs';
+import { delay, Observable, of } from 'rxjs';
 import { BehaviorSubject, filter, Subscription, switchMap, take } from 'rxjs';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { SubscribeGuard } from 'projects/sat-directives/src/public-api';
+import { SubsService } from './subs.service';
 
-interface IUser
-{
-  login: string;
-  name: string;
-  roles: string[];
-  email?: string;
-  properties: { [key: string]: any };
-}
-const user$ = new BehaviorSubject<IUser | undefined>(undefined);
-const observer1$ = new BehaviorSubject('защита подписки');
 let index = 1;
 @Component({
   selector: 'app-subscribe-guard',
@@ -24,7 +15,6 @@ let index = 1;
     <button (click)="onClick()">Получить данные</button>
 
     <button (click)="onUserLogon()">Пользователь залогинился</button>
-
   </pre>`
 
 })
@@ -35,24 +25,33 @@ export class SubscribeGuardComponent
 
   str?: string;
 
+  constructor(private readonly s_subs: SubsService) { }
+
+  /** Имитация доступа к беку */
+  fakeHttpGetLorem(): Observable<string>
+  {
+    console.log('getLorem');
+    return of(this.lorem).pipe(delay(2000));
+  }
+
   onClick()
   {
     this.withOutGuard()
       .subscribe(str =>
       {
-        console.log(this.lorem);
+        console.log(str);
         this.str = str;
       });
-    console.log(user$);
+    console.log(this.s_subs.user$);
   }
 
-  //#region без защиты
+  //#region Без защиты
   withOutGuard(): Observable<string>
   {
-    return user$
+    return this.s_subs.user$
       .pipe(
         filter(u => !!u),
-        switchMap(() => observer1$)
+        switchMap(() => this.fakeHttpGetLorem())
       );
   }
   //#endregion
@@ -61,19 +60,20 @@ export class SubscribeGuardComponent
   withGuard(): Observable<string>
   {
     return this.observer()
-      .pipe(switchMap(() => observer1$));
+      .pipe(switchMap(() => this.fakeHttpGetLorem()));
   }
 
   @SubscribeGuard()
   observer()
   {
-    return user$
+    return this.s_subs.user$
       .pipe(filter(u => !!u));
   }
   //#endregion
 
   onUserLogon(): void
   {
-    user$.next({ login: 'Alexander Zhelnin', name: 'Александр Желнин', roles: [], properties: {} });
+    this.s_subs.user$.next({ login: 'Alexander Zhelnin', name: 'Александр Желнин', roles: [], properties: {} });
   }
+
 }

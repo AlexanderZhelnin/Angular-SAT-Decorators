@@ -29,6 +29,39 @@ export function delayRetry(
 /**
  * Декоратор для повторных попыток при неудачных запросах
  *
+ * ## Пример для целого класса, все функции которые возвращают Observable, будут с повторными попытками при возникновении ошибки
+ * ```ts
+ * @Injectable({ providedIn: 'root' })
+ * @delayRetry()
+ * export class ApiClientService
+ * {
+ *   constructor(
+ *     private readonly http: HttpClient,
+ *     @Inject('BASE_URL') private readonly baseUrl: string,
+ *     private readonly cache: CacheService
+ *   )
+ *   { }
+
+ *   // Получить всех авторов
+ *   public GetAllAuthor()
+ *   {
+ *     return this.http.get<Author[]>(`${this.baseUrl}/api/Authors`);
+ *   }
+
+ *   // Получить автора по уникальному идентификатору
+ *   public GetAuthorById(id: number)
+ *   {
+ *   return this.http.get<Author[]>(`${this.baseUrl}/api/Authors/${id}`);
+ * ```
+ * ## Пример для для отдельной функции.
+ * ```ts
+ *   // Получить всех авторов
+ *   @delayRetry()
+ *   public GetAllAuthor()
+ *   {
+ *     return this.http.get<Author[]>(`${this.baseUrl}/api/Authors`);
+ *   }
+ * ```
  * @param [delayMs=1000] задержка между повторными попытками
  * @param [maxRetry=3] количество повторных попыток
  * @param [filter=(name: string) => true] фильтрация функций, которые обрабатываются

@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { SubsService } from './subs/subs.service';
 // import { cachedRequest } from 'sat-directives';
 // import { take } from 'rxjs';
-
-import { observer1$, observer2$ } from './subcribs/consts';
 
 enum SelectedEnum
 {
@@ -25,14 +24,14 @@ export class AppComponent implements OnInit
   //#endregion
 
   //#region Конструктор
-  constructor()
+  constructor(private readonly s_subs: SubsService)
   {
     let i1 = 0;
     let i2 = 0;
     setInterval(() =>
     {
-      observer1$.next(`Проверка1 ${++i1}`);
-      observer2$.next(`Проверка2 ${++i2}`);
+      this.s_subs.observer1$.next(`Проверка1 ${++i1}`);
+      this.s_subs.observer2$.next(`Проверка2 ${++i2}`);
     }, 1000);
   }
   //#endregion

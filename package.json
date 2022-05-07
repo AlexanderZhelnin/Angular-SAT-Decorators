@@ -6,7 +6,7 @@
     "start:sat-directives": "ng build sat-directives --watch",
     "start:app": "node ./scripts/waite-for-sat-directives.js && ng serve",
     "clear": "node ./scripts/clear.js",
-    "version": "cd ./projects/sat-auth && npm version patch && cd ../../",
+    "version": "cd ./projects/sat-directives && npm version patch && cd ../../",
     "publish": "npm run version && ng build sat-directives && cd dist/sat-directives && npm pack && npm publish",
     "test": "ng test"
   },

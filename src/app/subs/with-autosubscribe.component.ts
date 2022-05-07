@@ -1,7 +1,7 @@
 import { tap } from 'rxjs';
 import { Component } from '@angular/core';
-import { observer1$ } from './consts';
 import { AutoSubscribe } from 'sat-directives';
+import { SubsService } from './subs.service';
 
 @Component({
   selector: 'app-with-autosubcribe',
@@ -15,9 +15,11 @@ export class WithAutoSubscribeComponent
 {
   str1?: string;
 
+  constructor(private readonly s_subs: SubsService) { }
+
   @AutoSubscribe() work()
   {
-    return observer1$.pipe(
+    return this.s_subs.observer1$.pipe(
       tap(str =>
       {
         console.log(str);
