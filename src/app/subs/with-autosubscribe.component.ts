@@ -9,35 +9,31 @@ import { SubsService } from './subs.service';
   <pre>
     Компонент с авто подпиской/отпиской
     {{str1}}
-    {{str2}}
   </pre>`
 })
 export class WithAutoSubscribeComponent
 {
-  str1?: string;
-  str2?: string;
+  str1: string = '';
 
   constructor(private readonly s_subs: SubsService) { }
 
-  @AutoSubscribe() work()
+
+  @AutoSubscribe({
+    isAutoSubscribeOnInit: true,
+    onNext: WithAutoSubscribeComponent.prototype.onNext,
+    onError: WithAutoSubscribeComponent.prototype.onError
+
+  }) work()
   {
     return this.s_subs.observer1$.pipe(
       tap(str =>
       {
-        console.log(str);
         this.str1 = str;
       })
     );
   }
 
-  @AutoSubscribe() work1()
-  {
-    return this.s_subs.observer2$.pipe(
-      tap(str =>
-      {
-        console.log(str);
-        this.str2 = str;
-      })
-    );
-  }
+  onNext(str: string) { console.log(str); }
+  onError(err: any) { console.log(err); }
+
 }

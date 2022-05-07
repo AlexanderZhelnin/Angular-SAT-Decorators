@@ -29,6 +29,8 @@ export function SubscribeGuard(): MethodDecorator
 export interface IAutoSubscribeOption
 {
   isAutoSubscribeOnInit?: boolean;
+  onNext?: (arg: any) => void;
+  onError?: (arg: any) => void;
 }
 
 const isDestroyHandledMap = new Map<Function, boolean>();
@@ -109,7 +111,12 @@ export function AutoSubscribe(options: IAutoSubscribeOption = { isAutoSubscribeO
       const originalOnInit = target.ngOnInit;
       target.ngOnInit = function (...args: any[])
       {
-        const subscription = origin.apply(this, args).subscribe();
+        const subscription = origin
+          .apply(this, args)
+          .subscribe({
+            next: (arg: any) => options?.onNext?.apply(this, [arg]),
+            error: (err: any) => options?.onError?.apply(this, [err])
+          });
 
         subs?.get(key)?.unsubscribe();
         subs?.set(key, subscription);
@@ -120,7 +127,12 @@ export function AutoSubscribe(options: IAutoSubscribeOption = { isAutoSubscribeO
     else
       descriptor.value = function (...args: any[])
       {
-        const subscription = origin.apply(this, args).subscribe();
+        const subscription = origin
+          .apply(this, args)
+          .subscribe({
+            next: (arg: any) => options?.onNext?.apply(this, [arg]),
+            error: (err: any) => options?.onError?.apply(this, [err])
+          });
 
         subs?.get(key)?.unsubscribe();
         subs?.set(key, subscription);
