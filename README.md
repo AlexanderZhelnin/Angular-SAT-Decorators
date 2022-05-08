@@ -1,5 +1,8 @@
 # SATDirectives Библиотека полезных декораторов
 
+[Исходный код](https://github.com/AlexanderZhelnin/Angular-SAT-Decorators)
+
+[![Видео](https://img.youtube.com/vi/2AA7zzUcSyc/0.jpg)](https://youtu.be/2AA7zzUcSyc)
 
 ## Декоратор кеширования
 
@@ -100,6 +103,26 @@ export class WithAutoSubscribeComponent
       })
     );
   }
+}
+```
+
+```ts
+import { AutoSubscribe } from 'sat-decorators';
+export class WithAutoSubscribeComponent
+{
+  str1?: string;
+  constructor(private readonly s_subs: SubsService) { }    
+ @AutoSubscribe({
+    isAutoSubscribeOnInit: true,
+    onNext: WithAutoSubscribeComponent.prototype.onNext,
+    onError: WithAutoSubscribeComponent.prototype.onError
+  }) work()
+  {
+    return this.s_subs.observer1$;
+  }
+
+  onNext(str: string) { console.log(str); }
+  onError(err: any) { console.log(err); }
 }
 ```
 

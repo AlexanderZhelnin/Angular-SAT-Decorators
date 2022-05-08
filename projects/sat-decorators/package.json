@@ -1,12 +1,12 @@
 {
   "name": "sat-decorators",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "license": "MIT",
-  "description": "Библиотека полезных директив",
+  "description": "Библиотека полезных декораторов",
   "homepage": "https://www.youtube.com/channel/UCGntVzOD7faGCYbrUfd8PQg",
   "repository": {
     "type": "git",
-    "url": "https://github.com/AlexanderZhelnin/Angular-SAT-Directives"
+    "url": "https://github.com/AlexanderZhelnin/Angular-SAT-Decorators"
   },
   "author": {
     "name": "Александр Желнин",
