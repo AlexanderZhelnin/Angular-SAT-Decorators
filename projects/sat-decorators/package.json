@@ -1,6 +1,6 @@
 {
   "name": "sat-decorators",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "license": "MIT",
   "description": "Библиотека полезных декораторов",
   "homepage": "https://www.youtube.com/channel/UCGntVzOD7faGCYbrUfd8PQg",
@@ -14,7 +14,8 @@
   },
   "keywords": [
     "angular",
-    "decorators"
+    "decorators",
+    "rxjs"
   ],
   "peerDependencies": {
     "@angular/common": "^13.1.0",
